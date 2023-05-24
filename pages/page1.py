@@ -57,7 +57,7 @@ st.markdown("<h5 style='text-align: center; color: #10316B;'>This is where you g
 st.markdown("<h5 style='text-align: center; color: #10316B;'>Enter your favorite movie\'s name and let the system do the rest!</h5>", unsafe_allow_html=True)
 
 form = st.form(key='my_form')
-user_title = form.text_input(label='Enter a movie')
+user_title = form.text_input(label='Enter a movie\'s name')
 submit_button = form.form_submit_button(label='Submit')
 
 user_title = user_title.lower()
