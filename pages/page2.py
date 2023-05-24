@@ -100,11 +100,12 @@ elif enjoy:
 elif trust:
     a = get_emotion("Trust")
 
-b = get_recommendations(a)
+with st.button("Submit"):
+    b = get_recommendations(a)
 
-df_genre = df_movies.loc[df_movies['genres'] == a][:5]
-df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
-df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
-results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
-results = results.drop('overview', axis=1)
-st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
+    df_genre = df_movies.loc[df_movies['genres'] == a][:5]
+    df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
+    df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
+    results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
+    results = results.drop('overview', axis=1)
+    st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
