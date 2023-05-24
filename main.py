@@ -66,7 +66,7 @@ if user_title in all_titles:
         results = get_recommendations(user_title)
 
     st.success('Matches Found!', icon="✅")
-    st.markdown(f"<h2 style='text-align: center; color: #3F3F3F;'>TOP 10 Movies Similar to \"{user_title}\"</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: center;'>TOP 10 Movies Similar to \"{user_title}\"</h2>", unsafe_allow_html=True)
     st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
 else:
     st.warning('Movie Not Found! Please Try Again!')
