@@ -100,7 +100,7 @@ elif enjoy:
 elif trust:
     a = get_emotion("Trust")
 
-with st.button("Submit"):
+if st.button("Submit"):
     b = get_recommendations(a)
 
     df_genre = df_movies.loc[df_movies['genres'] == a][:5]
