@@ -8,8 +8,8 @@ import time
 from PIL import Image
 
 
-st.markdown("<h1 style='text-align: center;'>Movie Recommendation System</h1>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center;'>By Yen Le</h4>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #001E6C;'>Movie Recommendation System</h1>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center; color: #FCD900;'>By Yen Le</h4>", unsafe_allow_html=True)
 image = Image.open('bg.png')
 st.image(image, width=650)
 
