@@ -80,7 +80,7 @@ submit_button = form.form_submit_button(label='Submit')
 a = get_emotion(user_mood)
 b = get_recommendations(a)
 df_genre = movies.loc[movies['genres'] == a][:5]
-df_genre_alike_1 = movies.loc[movies['genres'] == b[1]].head(3)
-df_genre_alike_2 = movies.loc[movies['genres'] == b[2]].head(2)
+df_genre_alike_1 = movies.loc[movies['genres'] == b[1]]
+df_genre_alike_2 = movies.loc[movies['genres'] == b[2]]
 results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
 st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
