@@ -53,7 +53,7 @@ all_titles = [df2['title'][i] for i in range(len(df2['title']))]
 
 
 st.markdown("<h1 style='text-align: center; color: #10316B;'>Content Based Recommnder</h21>", unsafe_allow_html=True)
-st.subheader('This is where you get movies which is content-related to your reference. Enter your favorite movie\'s name and let the system do the rest!')
+st.caption('This is where you get movies which is content-related to your reference. Enter your favorite movie\'s name and let the system do the rest!')
 
 form = st.form(key='my_form')
 user_title = form.text_input(label='Enter a movie')
