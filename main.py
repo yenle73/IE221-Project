@@ -44,7 +44,7 @@ def get_recommendations(title):
     return_df = pd.DataFrame(columns=['Title','Release Year'])
     return_df['Title'] = df['title'].iloc[movie_indices]
     return_df['Release Year'] = df2['release_year'].iloc[movie_indices]
-    return_df['Similariry Score'] = [sim_scores[i][1] for i in range(10)]
+    return_df['Similarity Score'] = [sim_scores[i][1] for i in range(10)]
     return return_df
 
 st.markdown("<h1 style='text-align: center; color: #10316B;'>Movie Recommendation System</h21>", unsafe_allow_html=True)
