@@ -73,26 +73,36 @@ def get_emotion(emotion):
 
   return genre
 
-option = st.selectbox(
-    'How are you feeling?',
-    ('Sad', 'Disgust', 'Anger', 'Anticipation', 'Fear', 'Enjoyment', 'Trust'))
+col1, col2 = st.columns(2)
 
-if 'Sad' in option:
-    mood = "Sad"
-if "Disgust" in option:
-    mood = "Disgust"
-if "Anticipation" in option:
-    mood = "Anticipation"
-if "Fear" in option:
-    mood = "Fear"
-if "Enjoyment" in option:
-    mood = "Enjoyment"
-if "Trust" in option:
-    mood = "Trust"
+with col1:
+    sad = st.button("Sad")
+    disgust = st.button("Digust")
+    anger = st.button("Anger")
+with col2:
+    anti = st.button("Anticipation")
+    fear = st.button("Fear")
+    enjoy = st.button("Enjoyment")
+    trust = st.button("Trust")
 
-b = get_recommendations(mood)
+if sad:
+    a = get_emotion("Sad")
+elif disgust:
+    a = get_emotion("Disgust")
+elif anger:
+    a = get_emotion("Anger")
+elif anti:
+    a = get_emotion("Anticipation")
+elif fear:
+    a = get_emotion("Fear")
+elif enjoy:
+    a = get_emotion("Enjoyment")
+elif trust:
+    a = get_emotion("Trust")
 
-df_genre = df_movies.loc[df_movies['genres'] == option][:5]
+b = get_recommendations(a)
+
+df_genre = df_movies.loc[df_movies['genres'] == a][:5]
 df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
 df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
 results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
