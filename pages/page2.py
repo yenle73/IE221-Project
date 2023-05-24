@@ -17,11 +17,11 @@ import streamlit as st
 nltk.download('stopwords')
 nltk.download('punkt')
 
-df_movies = pd.read_csv('final_data.csv')
-movies = df_movies.copy()
+df1 = pd.read_csv('final_data.csv')
+df_movies = df1.copy()
 
-df_genre = pd.read_csv('movie-genres.csv')
-genres = df_genre.copy()
+df2 = pd.read_csv('movie-genres.csv')
+df_genres = df2.copy()
 
 vectorizer= CountVectorizer(
     tokenizer= word_tokenize, 
@@ -29,14 +29,14 @@ vectorizer= CountVectorizer(
     stop_words= 'english'
 )
 
-genres_transformed= vectorizer.fit_transform(genres['definition'])
+genres_transformed= vectorizer.fit_transform(df_genres['definition'])
 genres_similarities= cosine_similarity(genres_transformed, genres_transformed)
-genres_similarities= pd.DataFrame(genres_similarities, index= genres['genres'], columns= genres['genres'])
+genres_similarities= pd.DataFrame(genres_similarities, index= df_genres['genres'], columns= df_genres['genres'])
 
 def get_recommendations(genre):
     
     # check if the movie is recognized
-    if genre not in genres['genres'].values:
+    if genre not in df_genres['genres'].values:
         # movie is not recognized, print error message and exit the function
         print(f'Genre {genre} not recognized.\n')
         return
@@ -79,8 +79,9 @@ submit_button = form.form_submit_button(label='Submit')
 
 a = get_emotion(user_mood)
 b = get_recommendations(a)
-df_genre = movies.loc[movies['genres'] == a][:5]
-df_genre_alike_1 = movies.loc[movies['genres'] == b[1]]
-df_genre_alike_2 = movies.loc[movies['genres'] == b[2]]
+
+df_genre = df_movies.loc[df_movies['genres'] == a][:5]
+df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
+df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
 results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
 st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
