@@ -11,7 +11,7 @@ from PIL import Image
 st.markdown("<h2 style='text-align: center; color: #10316B;'>Movie Recommendation System</h2>", unsafe_allow_html=True)
 st.markdown("<h4 style='text-align: center; color: #FFE867;'>By Yen Le</h4>", unsafe_allow_html=True)
 image = Image.open('bg.png')
-st.image(image, width=800)
+st.image(image, width=650)
 
 form = st.form(key='my_form')
 user_title = form.text_input(label='Enter a movie')
