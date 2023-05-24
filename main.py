@@ -9,7 +9,7 @@ from PIL import Image
 
 
 st.markdown("<h1 style='text-align: center; color: #3F3F3F;'>Movie Recommendation System</h1>", unsafe_allow_html=True)
-image = Image.open(r'D:\IE221-Project\bg.png')
+image = Image.open('bg.png')
 st.image(image, width=650)
 
 form = st.form(key='my_form')
@@ -17,7 +17,7 @@ user_title = form.text_input(label='Enter a movie')
 submit_button = form.form_submit_button(label='Submit')
 
 # Load dataset
-df = pd.read_csv(r'D:\IE221-Project\final_data.csv')
+df = pd.read_csv('final_data.csv')
 df2 = df.copy()
 
 # Drop NA
