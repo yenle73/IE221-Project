@@ -73,11 +73,33 @@ def get_emotion(emotion):
 
   return genre
 
-form = st.form(key='my_form')
-user_mood = form.text_input(label='How are you feeling?')
-submit_button = form.form_submit_button(label='Submit')
+col1, col2 = st.columns(2)
 
-a = get_emotion(user_mood)
+with col1:
+    sad = st.button("Sad")
+    disgust = st.button("Digust")
+    anger = st.button("Anger")
+with col2:
+    anti = st.button("Anticipation")
+    fear = st.button("Fear")
+    enjoy = st.button("Enjoyment")
+    trust = st.button("Trust")
+
+if sad:
+    a = get_emotion("Sad")
+elif disgust:
+    a = get_emotion("Disgust")
+elif anger:
+    a = get_emotion("Anger")
+elif anti:
+    a = get_emotion("Anticipation")
+elif fear:
+    a = get_emotion("Fear")
+elif enjoy:
+    a = get_emotion("Enjoyment")
+elif trust:
+    a = get_emotion("Trust")
+    
 b = get_recommendations(a)
 
 df_genre = df_movies.loc[df_movies['genres'] == a][:5]
