@@ -7,16 +7,6 @@ from sklearn.metrics.pairwise import linear_kernel
 import time
 from PIL import Image
 
-
-st.markdown("<h1 style='text-align: center; color: #10316B;'>Movie Recommendation System</h21>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center; color: #EBB02D;'>By Yen Le</h4>", unsafe_allow_html=True)
-image = Image.open('bg.png')
-st.image(image, width=700)
-
-form = st.form(key='my_form')
-user_title = form.text_input(label='Enter a movie')
-submit_button = form.form_submit_button(label='Submit')
-
 # Load dataset
 df = pd.read_csv('final_data.csv')
 df2 = df.copy()
@@ -57,17 +47,27 @@ def get_recommendations(title):
     return_df['Similariry Score'] = [sim_scores[i][1] for i in range(10)]
     return return_df
 
+st.markdown("<h1 style='text-align: center; color: #10316B;'>Movie Recommendation System</h21>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center; color: #EBB02D;'>By Yen Le</h4>", unsafe_allow_html=True)
+image = Image.open('bg.png')
+st.image(image, width=700)
+
+form = st.form(key='my_form')
+user_title = form.text_input(label='Enter a movie')
+submit_button = form.form_submit_button(label='Submit')
+
 all_titles = [df2['title'][i] for i in range(len(df2['title']))]
 user_title = user_title.lower()
 
-if user_title in all_titles:
-    with st.spinner('Searching for movies...'):
-        time.sleep(3)
-        results = get_recommendations(user_title)
+if submit_button:
+    if user_title in all_titles:
+        with st.spinner('Searching for movies...'):
+            time.sleep(3)
+            results = get_recommendations(user_title)
 
-    st.success('Matches Found!')
-    st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
-    st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
-else:
-    st.warning('Movie Not Found! Please Try Again!')
+        st.success('Matches Found!')
+        st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
+        st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
+    else:
+        st.warning('Movie Not Found! Please Try Again!')
 
