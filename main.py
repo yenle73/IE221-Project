@@ -8,8 +8,8 @@ import time
 from PIL import Image
 
 
-st.markdown("<h2 style='text-align: center; color: #001E6C;'>Movie Recommendation System</h2>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center; color: #FCD900;'>By Yen Le</h4>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: 10316B;'>Movie Recommendation System</h2>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center; color: #FFE867;'>By Yen Le</h4>", unsafe_allow_html=True)
 image = Image.open('bg.png')
 st.image(image, width=650)
 
@@ -65,8 +65,8 @@ if user_title in all_titles:
         time.sleep(3)
         results = get_recommendations(user_title)
 
-    st.success('Matches Found!', icon="✅")
-    st.markdown(f"<h2 style='text-align: center;'>TOP 10 Movies Similar to \"{user_title}\"</h2>", unsafe_allow_html=True)
+    st.success('Matches Found!')
+    st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
     st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
 else:
     st.warning('Movie Not Found! Please Try Again!')
