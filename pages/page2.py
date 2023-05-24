@@ -73,34 +73,11 @@ def get_emotion(emotion):
 
   return genre
 
-col1, col2 = st.columns(2)
+option = st.selectbox(
+    'How are you feeling?',
+    ('Sad', 'Disgust', 'Anger', 'Anticipation', 'Fear', 'Enjoyment', 'Trust'))
 
-with col1:
-    sad = st.button("Sad")
-    disgust = st.button("Digust")
-    anger = st.button("Anger")
-with col2:
-    anti = st.button("Anticipation")
-    fear = st.button("Fear")
-    enjoy = st.button("Enjoyment")
-    trust = st.button("Trust")
-
-if sad:
-    a = get_emotion("Sad")
-elif disgust:
-    a = get_emotion("Disgust")
-elif anger:
-    a = get_emotion("Anger")
-elif anti:
-    a = get_emotion("Anticipation")
-elif fear:
-    a = get_emotion("Fear")
-elif enjoy:
-    a = get_emotion("Enjoyment")
-elif trust:
-    a = get_emotion("Trust")
-
-b = get_recommendations(a)
+b = get_recommendations(option)
 
 df_genre = df_movies.loc[df_movies['genres'] == a][:5]
 df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
