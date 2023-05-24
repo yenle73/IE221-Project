@@ -77,7 +77,20 @@ option = st.selectbox(
     'How are you feeling?',
     ('Sad', 'Disgust', 'Anger', 'Anticipation', 'Fear', 'Enjoyment', 'Trust'))
 
-b = get_recommendations(option)
+if 'Sad' in option:
+    mood = "Sad"
+if "Disgust" in option:
+    mood = "Disgust"
+if "Anticipation" in option:
+    mood = "Anticipation"
+if "Fear" in option:
+    mood = "Fear"
+if "Enjoyment" in option:
+    mood = "Enjoyment"
+if "Trust" in option:
+    mood = "Trust"
+
+b = get_recommendations(mood)
 
 df_genre = df_movies.loc[df_movies['genres'] == option][:5]
 df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
