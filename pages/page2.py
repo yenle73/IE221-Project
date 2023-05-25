@@ -73,39 +73,17 @@ def get_emotion(emotion):
 
   return genre
 
-col1, col2 = st.columns(2)
 
-with col1:
-    sad = st.button("Sad")
-    disgust = st.button("Digust")
-    anger = st.button("Anger")
-with col2:
-    anti = st.button("Anticipation")
-    fear = st.button("Fear")
-    enjoy = st.button("Enjoyment")
-    trust = st.button("Trust")
+option = st.selectbox(
+    'How are you feeling?',
+    ("Sad", "Digust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
 
-if sad:
-    a = get_emotion("Sad")
-elif disgust:
-    a = get_emotion("Disgust")
-elif anger:
-    a = get_emotion("Anger")
-elif anti:
-    a = get_emotion("Anticipation")
-elif fear:
-    a = get_emotion("Fear")
-elif enjoy:
-    a = get_emotion("Enjoyment")
-elif trust:
-    a = get_emotion("Trust")
 
-if st.button("Submit"):
-    b = get_recommendations(a)
+b = get_recommendations(option)
 
-    df_genre = df_movies.loc[df_movies['genres'] == a][:5]
-    df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
-    df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
-    results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
-    results = results.drop('overview', axis=1)
-    st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
+df_genre = df_movies.loc[df_movies['genres'] == option][:5]
+df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
+df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
+results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
+results = results.drop('overview', axis=1)
+st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
