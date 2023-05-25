@@ -63,7 +63,7 @@ def get_emotion(emotion):
       genre = 'Thriller'
   
   elif(emotion == "Fear"):
-      genre = 'Sport'
+      genre = 'Thriller'
   
   elif(emotion == "Enjoyment"):
       genre = 'Thriller'
@@ -84,7 +84,7 @@ mood = ''
 if option == "Sad":
     mood = "Sad"
 elif option == "Disgust":
-    mood = "Digust"
+    mood = "Disgust"
 elif option == "Anger":
     mood = "Anger"
 elif option == "Anticipation":
