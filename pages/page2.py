@@ -82,7 +82,7 @@ form = st.form("my_form")
 option = form.selectbox(
     'How are you feeling?',
     ("Sad", "Digust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
-submitted = st.form_submit_button("Submit")
+submitted = form.form_submit_button("Submit")
 
 if submitted:
     b = get_recommendations(option)
