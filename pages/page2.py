@@ -95,10 +95,11 @@ elif option == "Enjoyment":
     mood = "Enjoyment"
 elif option == "Trust":
     mood = "Trust"
-    
+
 if submitted:
-    b  = get_recommendations(mood)
-    df_genre = df_movies.loc[df_movies['genres'] == mood][:5]
+    a = get_emotion(mood)
+    b  = get_recommendations(a)
+    df_genre = df_movies.loc[df_movies['genres'] == a][:5]
     df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
     df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
     results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
