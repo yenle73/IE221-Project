@@ -85,6 +85,7 @@ option = form.selectbox(
 submitted = form.form_submit_button("Submit")
 
 if submitted:
+    st.write(option)
     b = get_recommendations(option)
 
     df_genre = df_movies.loc[df_movies['genres'] == option][:5]
