@@ -79,6 +79,8 @@ option = form.selectbox(
     ("Sad", "Digust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
 submitted = form.form_submit_button("Submit")
 
+mood = ''
+
 if submitted:
     if option == "Sad":
         mood = "Sad"
