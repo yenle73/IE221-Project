@@ -73,11 +73,6 @@ def get_emotion(emotion):
 
   return genre
 
-
-option = st.selectbox(
-    'How are you feeling?',
-    ("Sad", "Digust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
-
 form = st.form("my_form")
 option = form.selectbox(
     'How are you feeling?',
@@ -85,12 +80,25 @@ option = form.selectbox(
 submitted = form.form_submit_button("Submit")
 
 if submitted:
-    st.write(option)
-    b = get_recommendations(option)
+    if option == "Sad":
+        mood = "Sad"
+    elif option == "Disgust":
+        mood = "Digust"
+    elif option == "Anger":
+        mood = "Anger"
+    elif option == "Anticipation":
+        mood = "Anticipation"
+    elif option == "Fear":
+        mood = "Fear"
+    elif option == "Enjoyment":
+        mood = "Enjoyment"
+    elif option == "Trust":
+        mood = "Trust"
 
-    df_genre = df_movies.loc[df_movies['genres'] == option][:5]
-    df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
-    df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
-    results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
-    results = results.drop('overview', axis=1)
-    st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
+b  = get_recommendations(mood)
+df_genre = df_movies.loc[df_movies['genres'] == mood][:5]
+df_genre_alike_1 = df_movies.loc[df_movies['genres'] == b[1]].head(3)
+df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
+results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
+results = results.drop('overview', axis=1)
+st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
