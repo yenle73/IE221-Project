@@ -63,7 +63,7 @@ def get_emotion(emotion):
       genre = 'Thriller'
   
   elif(emotion == "Fear"):
-      genre = 'Sport'
+      genre = 'Thriller'
   
   elif(emotion == "Enjoyment"):
       genre = 'Thriller'
@@ -72,6 +72,8 @@ def get_emotion(emotion):
       genre = 'Western'
 
   return genre
+
+st.markdown("<h1 style='text-align: center; color: #10316B;'>Mood and Genre Based Recommnder</h1>", unsafe_allow_html=True)
 
 form = st.form("my_form")
 option = form.selectbox(
@@ -84,7 +86,7 @@ mood = ''
 if option == "Sad":
     mood = "Sad"
 elif option == "Disgust":
-    mood = "Digust"
+    mood = "Disgust"
 elif option == "Anger":
     mood = "Anger"
 elif option == "Anticipation":
