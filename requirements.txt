@@ -9,4 +9,3 @@ matplotlib
 scikit-surprise
 fuzzywuzzy
 seaborn
-random
