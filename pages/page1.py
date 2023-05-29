@@ -83,6 +83,7 @@ if submit_button:
             dfs = [results_1, results_2, results_3]
             random.shuffle(dfs)
             results = pd.concat(dfs, axis=0)
+            results = results[:11]
 
         st.success('Matches Found!')
         st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
