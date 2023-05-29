@@ -87,13 +87,9 @@ def fuzzy_matching(mapper, fav_movie, verbose=True):
     return match_tuple[0][1]
 def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
   model_knn.fit(data)
-    
-  st.write('You have input movie:', fav_movie)
   #the function below is a helper function defined to check presence of Movie Name
   idx = fuzzy_matching(mapper, fav_movie, verbose=True)
-    
-  st.write('Recommendation system start to make inference')
-  print('......\n')
+
   distances, indices = model_knn.kneighbors(data[idx], n_neighbors=n_recommendations+1)
   # get list of raw idx of recommendations
   raw_recommends = \
@@ -115,4 +111,6 @@ submit_button = form.form_submit_button(label='Submit')
 if submit_button:
     with st.spinner('Searching for movies...'):
         time.sleep(3)
+        st.success('Matches Found!')
+        st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
         make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10)
