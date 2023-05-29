@@ -83,6 +83,7 @@ if submit_button:
             dfs = [results_1, results_2, results_3]
             random.shuffle(dfs)
             results = pd.concat(dfs, axis=0)
+            results = results.drop('Similarity Score')
             results = results.iloc[:11]
 
         st.success('Matches Found!')
