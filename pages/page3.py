@@ -88,11 +88,11 @@ def fuzzy_matching(mapper, fav_movie, verbose=True):
 def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
   model_knn.fit(data)
     
-  print('You have input movie:', fav_movie)
+  st.write('You have input movie:', fav_movie)
   #the function below is a helper function defined to check presence of Movie Name
   idx = fuzzy_matching(mapper, fav_movie, verbose=True)
     
-  print('Recommendation system start to make inference')
+  st.write('Recommendation system start to make inference')
   print('......\n')
   distances, indices = model_knn.kneighbors(data[idx], n_neighbors=n_recommendations+1)
   # get list of raw idx of recommendations
@@ -101,9 +101,9 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
   # get reverse mapper
   reverse_mapper = {v: k for k, v in mapper.items()}
   # print recommendations
-  print('Recommendations for {}:'.format(fav_movie))
+  st.write('Recommendations for {}:'.format(fav_movie))
   for i, (idx, dist) in enumerate(raw_recommends):
-    print('{0}. {1}'.format(i+1, reverse_mapper[idx]))
+    st.write('{0}. {1}'.format(i+1, reverse_mapper[idx]))
 
 
 st.markdown("<h1 style='text-align: center; color: #10316B;'>Collaborative Recommnder</h1>", unsafe_allow_html=True)
