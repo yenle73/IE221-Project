@@ -97,7 +97,7 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
   # get reverse mapper
   reverse_mapper = {v: k for k, v in mapper.items()}
   # print recommendations
-  st.write('Recommendations for {}:'.format(fav_movie))
+  st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
   for i, (idx, dist) in enumerate(raw_recommends):
     st.write('{0}. {1}'.format(i+1, reverse_mapper[idx]))
 
@@ -112,5 +112,4 @@ if submit_button:
     with st.spinner('Searching for movies...'):
         time.sleep(3)
         st.success('Matches Found!')
-        st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
         make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10)
