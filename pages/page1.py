@@ -46,6 +46,7 @@ def get_recommendations(title):
     return_df['Title'] = df['title'].iloc[movie_indices]
     return_df['Release Year'] = df2['release_year'].iloc[movie_indices]
     return_df['Similarity Score'] = [sim_scores[i][1] for i in range(10)]
+    return_df = return_df.drop('Similarity Score')
     return return_df
 
 all_titles = [df2['title'][i] for i in range(len(df2['title']))]
@@ -83,7 +84,6 @@ if submit_button:
             dfs = [results_1, results_2, results_3]
             random.shuffle(dfs)
             results = pd.concat(dfs, axis=0)
-            results = results.drop('Similarity Score')
             results = results.iloc[:11]
 
         st.success('Matches Found!')
