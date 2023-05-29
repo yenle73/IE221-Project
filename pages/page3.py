@@ -97,7 +97,7 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
   # get reverse mapper
   reverse_mapper = {v: k for k, v in mapper.items()}
   # print recommendations
-  st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
+  st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like \"{user_title}\"</h3>", unsafe_allow_html=True)
   for i, (idx, dist) in enumerate(raw_recommends):
     st.write('{0}. {1}'.format(i+1, reverse_mapper[idx]))
 
