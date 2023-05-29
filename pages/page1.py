@@ -87,6 +87,6 @@ if submit_button:
 
         st.success('Matches Found!')
         st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
-        st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th')]).to_html(),unsafe_allow_html=True)
+        st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')])]).to_html(),unsafe_allow_html=True)
     else:
         st.warning('Movie Not Found! Please Try Again!')
