@@ -61,7 +61,7 @@ st.markdown("<h5 style='text-align: center; color: #10316B;'>Enter your favorite
 #user_title = form_1.text_input(label='Enter a movie\'s name')
 #submit_button = form_1.form_submit_button(label='Submit')
 
-form_1 = st.form_1(key='my_form')
+form_1 = st.form(key='my_form')
 user_title_1 = form_1.text_input(label='Enter a movie\'s name')
 user_title_2 = form_1.text_input(label='Enter a movie\'s name')
 user_title_3 = form_1.text_input(label='Enter a movie\'s name')
