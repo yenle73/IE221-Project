@@ -17,10 +17,10 @@ import streamlit as st
 nltk.download('stopwords')
 nltk.download('punkt')
 
-df1 = pd.read_csv('final_data.csv')
+df1 = pd.read_csv('data/final_data.csv')
 df_movies = df1.copy()
 
-df2 = pd.read_csv('movie-genres.csv')
+df2 = pd.read_csv('data/movie-genres.csv')
 df_genres = df2.copy()
 
 vectorizer= CountVectorizer(

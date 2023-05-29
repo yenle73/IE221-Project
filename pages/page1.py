@@ -9,7 +9,7 @@ from PIL import Image
 import random
 
 # Load dataset
-df = pd.read_csv('final_data.csv')
+df = pd.read_csv('data/final_data.csv')
 df2 = df.copy()
 
 # Drop NA

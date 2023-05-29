@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import streamlit as st
 
-movies_filename = "movies.csv"
+movies_filename = "data/movies.csv"
 
-ratings_filename = "ratings.csv"
+ratings_filename = "data/ratings.csv"
 
 df_movies = pd.read_csv(
     movies_filename,
