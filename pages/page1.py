@@ -46,7 +46,7 @@ def get_recommendations(title):
     return_df['Title'] = df['title'].iloc[movie_indices]
     return_df['Release Year'] = df2['release_year'].iloc[movie_indices]
     return_df['Similarity Score'] = [sim_scores[i][1] for i in range(10)]
-    return_df = return_df.drop('Similarity Score')
+    return_df = return_df.drop('Similarity Score', axis=1)
     return return_df
 
 all_titles = [df2['title'][i] for i in range(len(df2['title']))]
