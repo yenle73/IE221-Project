@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import time
 from PIL import Image
+import random
 
 # Load dataset
 df = pd.read_csv('final_data.csv')
@@ -56,20 +57,35 @@ st.markdown("<h1 style='text-align: center; color: #10316B;'>Content Based Recom
 st.markdown("<h5 style='text-align: center; color: #10316B;'>This is where you get movies which is content-related to your reference.</h5>", unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center; color: #10316B;'>Enter your favorite movie\'s name and let the system do the rest!</h5>", unsafe_allow_html=True)
 
-form = st.form(key='my_form')
-user_title = form.text_input(label='Enter a movie\'s name')
-submit_button = form.form_submit_button(label='Submit')
+#form_1 = st.form(key='my_form_1')
+#user_title = form_1.text_input(label='Enter a movie\'s name')
+#submit_button = form_1.form_submit_button(label='Submit')
 
-user_title = user_title.lower()
+with st.form(key='my_form'):
+    user_title_1 = st.text_input(label='Enter a movie\'s name')
+    user_title_2 = st.text_input(label='Enter a movie\'s name')
+    user_title_3 = st.text_input(label='Enter a movie\'s name')
+    submit_button = st.form_submit_button(label='Submit')
+
+
+user_title_1 = user_title_1.lower()
+user_title_2 = user_title_2.lower()
+user_title_3 = user_title_3.lower()
+
 
 if submit_button:
-    if user_title in all_titles:
+    if user_title_1 in all_titles and user_title_2 in all_titles and user_title_3 in all_titles:
         with st.spinner('Searching for movies...'):
             time.sleep(3)
-            results = get_recommendations(user_title)
+            results_1 = get_recommendations(user_title_1)
+            results_2 = get_recommendations(user_title_2)
+            results_3 = get_recommendations(user_title_3)
+            dfs = [results_1, results_2, results_3]
+            random.shuffle(dfs)
+            results = pd.concat(dfs, axis=0)
 
         st.success('Matches Found!')
-        st.markdown(f"<h3 style='text-align: center; color: #10316B;'>TOP 10 Movies Similar to \"{user_title}\"</h3>", unsafe_allow_html=True)
+        st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
         st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='th', props=[('min-width', '150px')])]).to_html(),unsafe_allow_html=True)
     else:
         st.warning('Movie Not Found! Please Try Again!')
