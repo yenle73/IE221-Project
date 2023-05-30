@@ -8,7 +8,7 @@ st.markdown("<h4 style='text-align: center; color: #EBB02D;'>By Yen Le</h4>", un
 image = Image.open('bg.png')
 st.image(image)
 
-add_page_title()
+#add_page_title()
 
 show_pages([
     Page("main.py", "Home Page", ":house:"),
