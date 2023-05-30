@@ -66,10 +66,10 @@ def get_emotion(emotion):
       genre = 'Thriller'
   
   elif(emotion == "Enjoyment"):
-      genre = 'Action'
+      genre = 'Science Fiction'
   
   elif(emotion == "Trust"):
-      genre = 'Western'
+      genre = 'Crime'
 
   return genre
 
