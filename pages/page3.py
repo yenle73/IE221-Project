@@ -102,7 +102,7 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
     st.markdown(f"<h5 style='text-align: center; color: #10316B;'>{i+1}. {reverse_mapper[idx]}</h5>", unsafe_allow_html=True)
 
 
-st.markdown("<h1 style='text-align: center; color: #10316B;'>Collaborative Recommender</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #10316B;'>Collaborative Recommender</h2>", unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what you like, please type in a movie that you already know and like.</h5>", unsafe_allow_html=True)
 
 form = st.form(key='my_form')
