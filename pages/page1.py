@@ -54,7 +54,7 @@ all_titles = [df2['title'][i] for i in range(len(df2['title']))]
 
 
 
-st.markdown("<h1 style='text-align: center; color: #10316B;'>Content Based Recommnder</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; color: #10316B;'>Content Based Recommnder</h2>", unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what you like, please type in 3 movies that you already know and like.</h5>", unsafe_allow_html=True)
 
 #form_1 = st.form(key='my_form_1')
