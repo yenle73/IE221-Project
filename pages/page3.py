@@ -103,7 +103,7 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
 
 
 st.markdown("<h1 style='text-align: center; color: #10316B;'>Collaborative Recommender</h1>", unsafe_allow_html=True)
-st.markdown("<h5 style='text-align: center; color: #10316B;'>The basic idea here is to find users that have similar past preference patterns as you has had and then recommending you items liked by those similar users which you probably has not encountered yet.</h5>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what you like, please type in a movie that you already know and like.</h5>", unsafe_allow_html=True)
 
 form = st.form(key='my_form')
 user_title = form.text_input(label='Enter a movie\'s name')

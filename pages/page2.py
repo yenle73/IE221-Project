@@ -74,7 +74,7 @@ def get_emotion(emotion):
   return genre
 
 st.markdown("<h1 style='text-align: center; color: #10316B;'>Mood and Genre Based Recommnder</h1>", unsafe_allow_html=True)
-st.markdown("<h5 style='text-align: center; color: #10316B;'>Movies recommendations will be made based on what you're feeling, please select your mood below.</h5>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center; color: #10316B;'>Recommendations will be made based on what you're feeling, please select your mood below.</h5>", unsafe_allow_html=True)
 
 form = st.form("my_form")
 option = form.selectbox(
