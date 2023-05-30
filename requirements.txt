@@ -9,3 +9,4 @@ matplotlib
 scikit-surprise
 fuzzywuzzy
 seaborn
+st_pages
