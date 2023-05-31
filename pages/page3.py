@@ -113,4 +113,4 @@ if submit_button:
     with st.spinner('Searching for movies...'):
         time.sleep(3)
         st.success('Matches Found!')
-        make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10)
+        st.table(make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10))
