@@ -98,14 +98,13 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
     reverse_mapper = {v: k for k, v in mapper.items()}
   # print recommendations
     st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Because You Like \"{user_title}\" So You May Also Like</h3>", unsafe_allow_html=True)
-    results = pd.DataFrame()
+    df = pd.DataFrame(columns = ['Rank', 'Title'])
     for i, (idx, dist) in enumerate(raw_recommends):
     #st.markdown(f"<p >{i+1}. {reverse_mapper[idx]}</p>", unsafe_allow_html=True)
         #results[i+1] = reverse_mapper[idx]
-        results['Rank'] = i+1
-        results['Title'] = reverse_mapper[idx]
+        df = df.append({'Rank' : i+1, 'Title' : reverse_mapper[idx]}, ignore_index = True)
 
-    return results
+    return df
 
 
 st.markdown("<h2 style='text-align: center; color: #10316B;'>Collaborative Recommender</h2>", unsafe_allow_html=True)
