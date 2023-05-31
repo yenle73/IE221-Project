@@ -46,7 +46,7 @@ def get_recommendations(title):
     return_df['Title'] = df['title'].iloc[movie_indices]
     return_df['Overview'] = df['overview'].iloc[movie_indices].str[:500]
     return_df['Release Year'] = df2['release_year'].iloc[movie_indices]
-    return_df['Similarity Score'] = [sim_scores[i][1] for i in range(10)]
+    return_df['Similarity Score'] = [sim_scores[i][1] for i in range(20)]
     return_df = return_df.drop('Similarity Score', axis=1)
     #random.shuffle(return_df)
     return return_df
@@ -86,6 +86,6 @@ if submit_button:
         st.success('Matches Found!')
         st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
         #st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='col', props=[('max-width', 800)])]).to_html(),unsafe_allow_html=True)
-        st.dataframe(results_1)
+        st.dataframe(results_1[:20])
     else:
         st.warning('Movie Not Found! Please Try Again!')
