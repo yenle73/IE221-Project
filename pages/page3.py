@@ -99,7 +99,7 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
   # print recommendations
   st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Because You Like \"{user_title}\" So You May Also Like</h3>", unsafe_allow_html=True)
   for i, (idx, dist) in enumerate(raw_recommends):
-    st.markdown(f"<h5 style='text-align: center; color: #10316B;'>{i+1}. {reverse_mapper[idx]}</h5>", unsafe_allow_html=True)
+    st.markdown(f"<p >{i+1}. {reverse_mapper[idx]}</p>", unsafe_allow_html=True)
 
 
 st.markdown("<h2 style='text-align: center; color: #10316B;'>Collaborative Recommender</h2>", unsafe_allow_html=True)
