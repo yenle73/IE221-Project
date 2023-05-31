@@ -80,7 +80,7 @@ def fuzzy_matching(mapper, fav_movie, verbose=True):
     # sort
     match_tuple = sorted(match_tuple, key=lambda x: x[2])[::-1]
     if not match_tuple:
-        print('Oops! No match is found')
+        st.warning('Oops! No match is found')
         return
     if verbose:
         print('Found possible matches in our database: {0}\n'.format([x[0] for x in match_tuple]))
@@ -89,7 +89,6 @@ def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
     model_knn.fit(data)
   #the function below is a helper function defined to check presence of Movie Name
     idx = fuzzy_matching(mapper, fav_movie, verbose=True)
-
     distances, indices = model_knn.kneighbors(data[idx], n_neighbors=n_recommendations+1)
   # get list of raw idx of recommendations
     raw_recommends = \
