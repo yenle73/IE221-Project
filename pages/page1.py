@@ -89,7 +89,7 @@ if submit_button:
         st.dataframe(results_1[:10])
         if st.button('Show more'):
             st.dataframe(results_1[11:20])
-        st.stop()
+        else: st.stop()
     else:
         st.warning('Movie Not Found! Please Try Again!')
         st.stop()
