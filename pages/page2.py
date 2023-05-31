@@ -54,7 +54,7 @@ def get_emotion(emotion):
       genre = 'Drama'
 
   elif(emotion == "Disgust"):
-      genre = 'Musical'
+      genre = 'Music'
 
   elif(emotion == "Anger"):
       genre = 'Family'
