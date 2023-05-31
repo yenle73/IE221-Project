@@ -47,11 +47,10 @@ def get_recommendations(title):
     return_df['Release Year'] = df2['release_year'].iloc[movie_indices]
     return_df['Similarity Score'] = [sim_scores[i][1] for i in range(10)]
     return_df = return_df.drop('Similarity Score', axis=1)
+    random.shuffle(return_df)
     return return_df
 
 all_titles = [df2['title'][i] for i in range(len(df2['title']))]
-
-
 
 
 st.markdown("<h2 style='text-align: center; color: #10316B;'>Content Based Recommnder</h2>", unsafe_allow_html=True)
@@ -63,31 +62,29 @@ st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what yo
 
 form_1 = st.form(key='my_form')
 user_title_1 = form_1.text_input(label='Enter a movie\'s name', key='ut1')
-user_title_2 = form_1.text_input(label='Enter a movie\'s name', key='ut2')
-user_title_3 = form_1.text_input(label='Enter a movie\'s name', key='ut3')
+#user_title_2 = form_1.text_input(label='Enter a movie\'s name', key='ut2')
+#user_title_3 = form_1.text_input(label='Enter a movie\'s name', key='ut3')
 submit_button = form_1.form_submit_button(label='Submit')
 
 
 user_title_1 = user_title_1.lower()
-user_title_2 = user_title_2.lower()
-user_title_3 = user_title_3.lower()
+#user_title_2 = user_title_2.lower()
+#user_title_3 = user_title_3.lower()
 
 
 if submit_button:
-    if user_title_1 in all_titles and user_title_2 in all_titles and user_title_3 in all_titles:
+    if user_title_1 in all_titles:
         with st.spinner('Searching for movies...'):
             time.sleep(3)
             results_1 = get_recommendations(user_title_1)
-            results_2 = get_recommendations(user_title_2)
-            results_3 = get_recommendations(user_title_3)
-            dfs = [results_1, results_2, results_3]
-            random.shuffle(dfs)
-            results = pd.concat(dfs, axis=0)
-            results = results.iloc[:11]
+            #results_2 = get_recommendations(user_title_2)
+            #results_3 = get_recommendations(user_title_3)
+            #dfs = [results_1, results_2, results_3]
+            #results = pd.concat(dfs, axis=0)
 
         st.success('Matches Found!')
         st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
         #st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='col', props=[('max-width', 800)])]).to_html(),unsafe_allow_html=True)
-        st.table(results)
+        st.table(results_1)
     else:
         st.warning('Movie Not Found! Please Try Again!')
