@@ -80,7 +80,7 @@ def fuzzy_matching(mapper, fav_movie, verbose=True):
     # sort
     match_tuple = sorted(match_tuple, key=lambda x: x[2])[::-1]
     if not match_tuple:
-        st.warning('Oops! No match is found')
+        print('Oops! No match is found')
         return
     if verbose:
         print('Found possible matches in our database: {0}\n'.format([x[0] for x in match_tuple]))
@@ -116,5 +116,8 @@ submit_button = form.form_submit_button(label='Submit')
 if submit_button:
     with st.spinner('Searching for movies...'):
         time.sleep(3)
-        st.success('Matches Found!')
-        st.table(make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10))
+        try:
+            st.success('Matches Found!')
+            st.table(make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10))
+        except:
+            st.warning('Oops! No match is found')
