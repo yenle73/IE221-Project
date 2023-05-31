@@ -107,6 +107,7 @@ if submitted:
     df_genre_alike_2 = df_movies.loc[df_movies['genres'] == b[2]].head(2)
     results = pd.concat([df_genre, df_genre_alike_1, df_genre_alike_2])
     results = results.drop('overview', axis=1)
+    results['release_year'] = results['release_year'].apply(str)
     results.columns = ['Title', 'Genre', 'Release Year']
     st.success('Matches Found!')
     st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
