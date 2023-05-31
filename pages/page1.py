@@ -47,7 +47,7 @@ def get_recommendations(title):
     return_df['Overview'] = df['overview'].iloc[movie_indices].str[:500]
     return_df['Release Year'] = df2['release_year'].iloc[movie_indices]
     return_df['Similarity Score'] = [sim_scores[i][1] for i in range(21)]
-    return_df = return_df.drop('Similarity Score', axis=1)
+    #return_df = return_df.drop('Similarity Score', axis=1)
     #random.shuffle(return_df)
     return return_df
 
@@ -63,14 +63,14 @@ st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what yo
 
 form_1 = st.form(key='my_form')
 user_title_1 = form_1.text_input(label='Enter a movie\'s name', key='ut1')
-#user_title_2 = form_1.text_input(label='Enter a movie\'s name', key='ut2')
-#user_title_3 = form_1.text_input(label='Enter a movie\'s name', key='ut3')
+user_title_2 = form_1.text_input(label='Enter a movie\'s name', key='ut2')
+user_title_3 = form_1.text_input(label='Enter a movie\'s name', key='ut3')
 submit_button = form_1.form_submit_button(label='Submit')
 
 
 user_title_1 = user_title_1.lower()
-#user_title_2 = user_title_2.lower()
-#user_title_3 = user_title_3.lower()
+user_title_2 = user_title_2.lower()
+user_title_3 = user_title_3.lower()
 
 
 if submit_button:
@@ -78,18 +78,16 @@ if submit_button:
         with st.spinner('Searching for movies...'):
             time.sleep(3)
             results_1 = get_recommendations(user_title_1)
-            #results_2 = get_recommendations(user_title_2)
-            #results_3 = get_recommendations(user_title_3)
-            #dfs = [results_1, results_2, results_3]
-            #results = pd.concat(dfs, axis=0)
+            results_2 = get_recommendations(user_title_2)
+            results_3 = get_recommendations(user_title_3)
+            dfs = [results_1, results_2, results_3]
+            results = pd.concat(dfs, axis=0)
+            results.sort_values(by=['Similarity Score'])
 
         st.success('Matches Found!')
         st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
         #st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='col', props=[('max-width', 800)])]).to_html(),unsafe_allow_html=True)
-        st.dataframe(results_1[:10])
-        show_more = st.button('Show more')
-        if show_more:
-            st.dataframe(results_1[11:20])
+        st.dataframe(results[:10])
     else:
         st.warning('Movie Not Found! Please Try Again!')
         st.stop()
