@@ -46,6 +46,8 @@ def get_recommendations(genre):
     # retrieve the top 3 most similar movies
     top_3_most_similar = similarities.loc[:, genre].nlargest(4).iloc[1:].index.values
 
+    top_3_most_similar.columns = ['Title', 'Genres', 'Release Year']
+
     return top_3_most_similar
 
 def get_emotion(emotion):
