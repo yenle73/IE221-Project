@@ -79,7 +79,7 @@ st.markdown("<h5 style='text-align: center; color: #10316B;'>Please select your 
 form = st.form("my_form")
 option = form.selectbox(
     'How are you feeling?',
-    ("Sad", "Digust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
+    ("Sad", "Disgust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
 submitted = form.form_submit_button("Submit")
 
 mood = ''
