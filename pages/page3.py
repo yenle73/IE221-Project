@@ -86,22 +86,22 @@ def fuzzy_matching(mapper, fav_movie, verbose=True):
         print('Found possible matches in our database: {0}\n'.format([x[0] for x in match_tuple]))
     return match_tuple[0][1]
 def make_recommendation(model_knn, data, mapper, fav_movie, n_recommendations):
-  model_knn.fit(data)
+    model_knn.fit(data)
   #the function below is a helper function defined to check presence of Movie Name
-  idx = fuzzy_matching(mapper, fav_movie, verbose=True)
+    idx = fuzzy_matching(mapper, fav_movie, verbose=True)
 
-  distances, indices = model_knn.kneighbors(data[idx], n_neighbors=n_recommendations+1)
+    distances, indices = model_knn.kneighbors(data[idx], n_neighbors=n_recommendations+1)
   # get list of raw idx of recommendations
-  raw_recommends = \
-    sorted(list(zip(indices.squeeze().tolist(), distances.squeeze().tolist())), key=lambda x: x[1])[:0:-1]
+    raw_recommends = \
+        sorted(list(zip(indices.squeeze().tolist(), distances.squeeze().tolist())), key=lambda x: x[1])[:0:-1]
   # get reverse mapper
-  reverse_mapper = {v: k for k, v in mapper.items()}
+    reverse_mapper = {v: k for k, v in mapper.items()}
   # print recommendations
-  st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Because You Like \"{user_title}\" So You May Also Like</h3>", unsafe_allow_html=True)
-  results = {}
-  for i, (idx, dist) in enumerate(raw_recommends):
+    st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Because You Like \"{user_title}\" So You May Also Like</h3>", unsafe_allow_html=True)
+    results = {}
+    for i, (idx, dist) in enumerate(raw_recommends):
     #st.markdown(f"<p >{i+1}. {reverse_mapper[idx]}</p>", unsafe_allow_html=True)
-    results[i+1] = reverse_mapper[idx]
+        results[i+1] = reverse_mapper[idx]
     return results
 
 
