@@ -117,7 +117,6 @@ if submit_button:
     with st.spinner('Searching for movies...'):
         time.sleep(3)
         try:
-            st.success('Matches Found!')
             st.table(make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10))
         except:
             st.warning('Oops! No match is found')
