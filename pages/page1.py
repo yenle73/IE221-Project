@@ -12,8 +12,6 @@ import random
 df = pd.read_csv('data/final_data.csv')
 df2 = df.copy()
 
-# Drop NA
-df2['overview'].fillna(' ', inplace=True)
 df2['title'] = df2['title'].str.lower()
 
 # Constructing TF-IDF Matrix
