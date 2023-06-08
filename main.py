@@ -1,12 +1,18 @@
 from st_pages import Page, Section, add_page_title, show_pages
 import streamlit as st
 from PIL import Image
+import pandas as pd
+import numpy as np
 
 st.markdown("<h1 style='text-align: center; color: #10316B;'>Movie Recommendation System</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center; color: #10316B;'>&#10024 Discover New Movies &#10024</h3>", unsafe_allow_html=True)
 st.markdown("<h4 style='text-align: center; color: #EBB02D;'>By Yen Le</h4>", unsafe_allow_html=True)
-image = Image.open('bg.png')
-st.image(image)
+#image = Image.open('bg.png')
+#st.image(image)
+
+df = pd.read_csv('data/final_data.csv')
+chart_data = pd.DataFrame(df, x=df['title'], y=df['release_year'])
+
 
 #add_page_title()
 
