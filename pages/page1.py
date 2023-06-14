@@ -47,4 +47,3 @@ if submit_button:
         lib.st.dataframe(results[:10])
     else:
         lib.st.warning('Movie Not Found! Please Try Again!')
-        lib.st.stop()
