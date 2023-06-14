@@ -10,3 +10,4 @@ scikit-surprise
 fuzzywuzzy
 seaborn
 st_pages
+tmdbv3api
