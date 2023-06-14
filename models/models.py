@@ -23,6 +23,7 @@ class similarity_model:
         return cosine_sim
     
     def get_recommendations(self, df, title, indices, cosine_sim):
+        '''Hàm đưa ra dự đoán top 20 bộ phim tương đồng với input của người dùng và trả về dataframe'''
         global sim_scores
         # Get the index of the movie that matches the title
         idx = indices[title]
@@ -46,8 +47,14 @@ class similarity_model:
         return return_df
     
 class KNN():
+    '''Lớp mô hình KNN gồm các phương thức xử lý dữ diệu thành ma trận để đưa vào mô hình
+    và xây dựng mô hình KNN'''
+
     def __init__(self):
-        pass
+        self.metric = 'cosine'
+        self.algorithm = 'brute'
+        self.n_neighbors = 20
+        self.n_jobs = -1
     def create_movie_user_matrix(self, df, index, cols, value):
         # Pivot and create movie-user matrix
         movie_user_mat = df.pivot(index=index, columns=cols, values=value).fillna(0)
@@ -67,26 +74,15 @@ class KNN():
         return movie_user_mat_sparse
     
     def knn(self, movie_user_mat_sparse):
-        model_knn = lib.NearestNeighbors(metric='cosine', algorithm='brute', n_neighbors=20, n_jobs=-1)
+        model_knn = lib.NearestNeighbors(self.metric, self.algorithm, self.n_neighbors, self.n_jobs)
         model_knn.fit(movie_user_mat_sparse)
         return model_knn
 
     def fuzzy_matching(self, mapper, fav_movie, verbose=True):
-        """
-        return the closest match via fuzzy ratio. If no match found, return None
-    
-        Parameters
-        ----------    
-        mapper: dict, map movie title name to index of the movie in data
-
-        fav_movie: str, name of user input movie
-    
-        verbose: bool, print log if True
-
-        Return
-        ------
-        index of the closest match
-        """
+        '''Sử dụng kỹ thuật fuzzy matching để tìm tiêu đề bộ phim người dùng nhập vào,
+        nếu tỉ lệ nhỏ hơn 60 thì không tìm thấy dữ liệu trong database. Kết quả trả về index
+        của match gần nhất.
+        '''
         match_tuple = []
         # get match
         for title, idx in mapper.items():
@@ -103,6 +99,8 @@ class KNN():
         return match_tuple[0][1]
     
     def make_recommendation(self, model_knn, data, mapper, fav_movie, n_recommendations):
+        '''Hàm dự đoán những bộ phim có khoảng cách gần nhất với bộ phim của người dùng'''
+        
         model_knn.fit(data)
         #the function below is a helper function defined to check presence of Movie Name
         idx = self.fuzzy_matching(mapper, fav_movie, verbose=True)
