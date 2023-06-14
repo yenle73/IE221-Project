@@ -17,10 +17,6 @@ all_titles = [df2['title'][i] for i in range(len(df2['title']))]
 lib.st.markdown("<h2 style='text-align: center; color: #10316B;'>Content Based Recommnder</h2>", unsafe_allow_html=True)
 lib.st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what you like, please type in 3 movies that you already know and like.</h5>", unsafe_allow_html=True)
 
-#form_1 = st.form(key='my_form_1')
-#user_title = form_1.text_input(label='Enter a movie\'s name')
-#submit_button = form_1.form_submit_button(label='Submit')
-
 form_1 = lib.st.form(key='my_form')
 user_title_1 = form_1.text_input(label='Enter a movie\'s name', key='ut1')
 user_title_2 = form_1.text_input(label='Enter a movie\'s name', key='ut2')
@@ -43,7 +39,6 @@ if submit_button:
 
         lib.st.success('Matches Found!')
         lib.st.markdown(f"<h3 style='text-align: center; color: #10316B;'>Movies You May Like</h3>", unsafe_allow_html=True)
-        #st.markdown(results.style.set_table_styles([dict(selector='*', props=[('text-align', 'center')]), dict(selector='col', props=[('max-width', 800)])]).to_html(),unsafe_allow_html=True)
         lib.st.dataframe(results[:10])
     else:
         lib.st.warning('Movie Not Found! Please Try Again!')
