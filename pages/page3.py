@@ -39,6 +39,6 @@ submit_button = form.form_submit_button(label='Submit')
 
 if submit_button:
     try:
-        lib.st.table(model.make_recommendation(model_knn=model_knn, data=movie_user_mat_sparse, fav_movie=user_title, mapper=movie_to_idx, n_recommendations=10))
+        lib.st.table(model.make_recommendation(model_knn, movie_user_mat_sparse, user_title, movie_to_idx, 10))
     except:
         lib.st.warning('Oops! No match is found')
