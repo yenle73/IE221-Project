@@ -1,6 +1,15 @@
 from library import library as lib
 from models import models
 
+lib.st.markdown("<h2 style='text-align: center; color: #10316B;'>Mood and Genre Based Recommnder</h2>", unsafe_allow_html=True)
+lib.st.markdown("<h5 style='text-align: center; color: #10316B;'>Please select your mood below for us to make recommendations.</h5>", unsafe_allow_html=True)
+
+form = lib.st.form("my_form")
+option = form.selectbox(
+    'How do you wish to feel?',
+    ("Sad", "Disgust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
+submitted = form.form_submit_button("Submit")
+
 df1 = lib.pd.read_csv('data/final_data.csv')
 df_movies = df1.copy()
 
@@ -46,15 +55,6 @@ def get_emotion(emotion):
       genre = 'Family'
 
   return genre
-
-lib.st.markdown("<h2 style='text-align: center; color: #10316B;'>Mood and Genre Based Recommnder</h2>", unsafe_allow_html=True)
-lib.st.markdown("<h5 style='text-align: center; color: #10316B;'>Please select your mood below for us to make recommendations.</h5>", unsafe_allow_html=True)
-
-form = lib.st.form("my_form")
-option = form.selectbox(
-    'How do you wish to feel?',
-    ("Sad", "Disgust", "Anger", "Anticipation", "Fear", "Enjoyment", "Trust"))
-submitted = form.form_submit_button("Submit")
 
 mood = ''
 

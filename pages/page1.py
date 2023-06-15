@@ -1,19 +1,6 @@
 from library import library as lib
 from models import models
 
-# Load dataset
-df = lib.pd.read_csv('data/final_data.csv')
-df2 = df.copy()
-
-df2['title'] = df2['title'].str.lower()
-df2['release_year'] = df2['release_year'].apply(str)
-df2 = df2.reset_index()
-indices = lib.pd.Series(df2.index, index=df2['title']).drop_duplicates()
-
-model = models.similarity_model()
-cosine_sim = model.similarity(df2, 'overview')
-all_titles = [df2['title'][i] for i in range(len(df2['title']))]
-
 lib.st.markdown("<h2 style='text-align: center; color: #10316B;'>Content Based Recommnder</h2>", unsafe_allow_html=True)
 lib.st.markdown("<h5 style='text-align: center; color: #10316B;'>To teach us what you like, please type in 3 movies that you already know and like.</h5>", unsafe_allow_html=True)
 
@@ -27,6 +14,19 @@ submit_button = form_1.form_submit_button(label='Submit')
 user_title_1 = user_title_1.lower()
 user_title_2 = user_title_2.lower()
 user_title_3 = user_title_3.lower()
+
+# Load dataset
+df = lib.pd.read_csv('data/final_data.csv')
+df2 = df.copy()
+
+df2['title'] = df2['title'].str.lower()
+df2['release_year'] = df2['release_year'].apply(str)
+df2 = df2.reset_index()
+indices = lib.pd.Series(df2.index, index=df2['title']).drop_duplicates()
+
+model = models.similarity_model()
+cosine_sim = model.similarity(df2, 'overview')
+all_titles = [df2['title'][i] for i in range(len(df2['title']))]
 
 if submit_button:
     if user_title_1 in all_titles:

@@ -11,3 +11,4 @@ fuzzywuzzy
 seaborn
 st_pages
 tmdbv3api
+streamlit-authenticator
