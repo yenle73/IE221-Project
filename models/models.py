@@ -50,11 +50,11 @@ class KNN():
     '''Lớp mô hình KNN gồm các phương thức xử lý dữ diệu thành ma trận để đưa vào mô hình
     và xây dựng mô hình KNN'''
 
-    def __init__(self):
-        self.metric = 'cosine'
-        self.algorithm = 'brute'
-        self.n_neighbors = 20
-        self.n_jobs = -1
+    def __init__(self, metric='cosine', alogorithm='brute', n_neighbors=20, n_jobs=-1):
+        self.metric = metric
+        self.algorithm = alogorithm
+        self.n_neighbors = n_neighbors
+        self.n_jobs = n_jobs
     def create_movie_user_matrix(self, df, index, cols, value):
         # Pivot and create movie-user matrix
         movie_user_mat = df.pivot(index=index, columns=cols, values=value).fillna(0)
@@ -74,7 +74,7 @@ class KNN():
         return movie_user_mat_sparse
     
     def knn(self, movie_user_mat_sparse):
-        model_knn = lib.NearestNeighbors(self.metric, self.algorithm, self.n_neighbors, self.n_jobs)
+        model_knn = lib.NearestNeighbors(metric='cosine', algorithm='brute', n_neighbors=20, n_jobs=-1)
         model_knn.fit(movie_user_mat_sparse)
         return model_knn
 
@@ -94,8 +94,8 @@ class KNN():
         if not match_tuple:
             lib.st.warning('Oops! No match is found')
             return
-        if verbose:
-            lib.st.write('Found possible matches in our database: {0}\n'.format([x[0] for x in match_tuple]))
+        #if verbose:
+        #    lib.st.write('Found possible matches in our database: {0}\n'.format([x[0] for x in match_tuple]))
         return match_tuple[0][1]
     
     def make_recommendation(self, model_knn, data, mapper, fav_movie, n_recommendations):
