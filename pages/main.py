@@ -12,7 +12,7 @@ option = form.selectbox(
     ("Action", "Adventure", "Fantasy", "Animation", "Science Fiction", 
      "Drama", "Thriller", "Family", "Comedy", "History", "War", "Western",
      "Romance", "Crime", "Mystery", "Horror", "Documentary", "Music", "TV Movie", "Foreign"))
-year = form.slider("Choose release year", 1916, 2023, 2020, 1)
+year = form.slider("Choose release year", 1916, 2023, 1970, 1)
 submitted = form.form_submit_button("Submit")
 
 df1 = lib.pd.read_csv('data/final_data.csv')
