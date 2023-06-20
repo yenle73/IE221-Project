@@ -12,3 +12,4 @@ seaborn
 st_pages
 tmdbv3api
 streamlit-authenticator
+st_pages
