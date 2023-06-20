@@ -7,7 +7,7 @@ placeholder= lib.st.image(image)
 
 show_pages(
     [
-        Page("main.py", "Home", "🏠"),
+        Page("main.py", "Home", ":home:"),
         Page("pages/page1.py", "Content Based Recommnder", ":books:"),
         Page("pages/page2.py", "Mood and Genre Based Recommnder", "📖"),
         Page("pages/page3.py", "Collaborative Recommender", "✏️"),
