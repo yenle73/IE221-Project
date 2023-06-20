@@ -19,7 +19,7 @@ user_title_3 = user_title_3.lower()
 df = lib.pd.read_csv('data/final_data.csv')
 df2 = df.copy()
 
-df2['title'] = df2['title'].str.lower()
+#df2['title'] = df2['title'].str.lower()
 df2['release_year'] = df2['release_year'].apply(str)
 df2 = df2.reset_index()
 indices = lib.pd.Series(df2.index, index=df2['title']).drop_duplicates()
